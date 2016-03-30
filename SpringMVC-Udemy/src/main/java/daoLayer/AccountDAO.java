@@ -13,7 +13,7 @@ public interface AccountDAO {
 
 	List<Account> getAllAccounts();
 
-	boolean transferMoney(Account fromAccount, Account toAccount, int tranferAmount);
+	void transferMoney(Account fromAccount, Account toAccount, int tranferAmount);
 	
 	void deleteAccount(Account account);
 	

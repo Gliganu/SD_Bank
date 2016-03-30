@@ -50,14 +50,13 @@ public class AccountDAOHibernate implements AccountDAO {
 	}
 
 	@Override
-	public boolean transferMoney(Account fromAccount, Account toAccount, int tranferAmount) {
+	public void transferMoney(Account fromAccount, Account toAccount, int tranferAmount) {
 
 		saveOrUpdateAccount(fromAccount);
 		saveOrUpdateAccount(toAccount);
 		
 		transactionDAO.saveTransaction(fromAccount.getUser(),toAccount.getUser(),tranferAmount);
-		
-		return true;
+
 		
 	}
 	

@@ -9,6 +9,7 @@ import daoLayer.AccountDAO;
 import domainLayer.Account;
 import domainLayer.MoneyTransfer;
 import domainLayer.User;
+import webLayer.Utils;
 
 @Service("accountsService")
 public class AccountsService {
@@ -39,6 +40,10 @@ public class AccountsService {
 		Account toAccount = getAccountById(moneyTransfer.getToAccountId());
 		int tranferAmount = moneyTransfer.getSum();
 		
+		if(toAccount == null || fromAccount == null){
+			return false;
+		}
+		
 		if (fromAccount.getMoneyAmount() < tranferAmount) {
 			return false;
 		}
@@ -47,8 +52,9 @@ public class AccountsService {
 		fromAccount.setMoneyAmount(fromAccount.getMoneyAmount() - tranferAmount);
 		
 	
-		return accountDAO.transferMoney(fromAccount, toAccount, tranferAmount);
-
+		accountDAO.transferMoney(fromAccount, toAccount, tranferAmount);
+			
+		return true;
 	}
 
 	public void deleteAccount(long idNumber) {

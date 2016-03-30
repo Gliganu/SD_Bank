@@ -176,9 +176,13 @@ public class ActionsController {
 			return TRANSFER_MONEY_PAGE;
 		} else {
 		
-			accountsService.transferMoney(moneyTransfer);
+			boolean successStatus = accountsService.transferMoney(moneyTransfer);
 			
-			return Utils.showMessagePage(model, "Money transfered");
+			String message;
+		
+			message = successStatus ? "Money transfered":"Error occured";
+			
+			return Utils.showMessagePage(model, message);
 		}
 
 	}

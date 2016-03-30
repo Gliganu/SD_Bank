@@ -2,4 +2,4 @@
     pageEncoding="ISO-8859-1"%>
 
 	
-	WOOPS. Error  !
+<h2> WOOPS. An error has occurred ! </h2>	
