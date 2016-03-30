@@ -8,7 +8,7 @@
 
 <h2>Update Accounts</h2>
 
-<table border=1 width=100%>
+<table class="allCenter" border=1 width=100%>
 	<tr>
 		<th>ID Number</th>
 		<th>Creation Date</th>

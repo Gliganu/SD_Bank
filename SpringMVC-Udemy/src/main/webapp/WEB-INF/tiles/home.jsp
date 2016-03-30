@@ -11,7 +11,7 @@
 
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 	<p>
-		<a href=<c:url value="/viewAllCustomers "/>>View All Customers </a>
+		<a href=<c:url value="/viewAllCustomers "/>>View All Customers (Admin) </a>
 	</p>
 
 </sec:authorize>

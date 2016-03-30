@@ -8,7 +8,7 @@
 
 <h2>View All Customers</h2>
 
-<table border=1 width=100%>
+<table class="allCenter" border=1 width=100%>
 	<tr>
 		<th>Username</th>
 		<th>Name</th>
