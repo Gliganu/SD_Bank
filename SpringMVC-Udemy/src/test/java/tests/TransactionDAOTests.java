@@ -49,6 +49,13 @@ public class TransactionDAOTests {
 	User user1 = new User("mihai", "test", "Mihai Pop", 19475725, "Dorobantilor 109", "ROLE_USER", true);
 	User user2 = new User("admin", "test", "Andreea Muresan", 19357621, "Ceahlau 14", "ROLE_ADMIN", true);
 	User user3 = new User("bogdan", "test", "Bogdan Gliga", 19958692, "Giulesti 10", "ROLE_USER", true);
+	User user4 = new User("administrator", "test", "Flaviu Stoican", 13458692, "Pitestu 140", "ROLE_ADMIN", true);
+	User user5 = new User("mircea", "test", "Mircea Nitu", 16859392, "Mihai Viteazu 12", "ROLE_USER", true);
+	User user6 = new User("oana", "test", "Oana Blaga", 15958543, "Fanfara 2", "ROLE_USER", true);
+	User user7 = new User("cristi", "test", "Cristi Mincea", 1768692, "Mircea cel Batran 103", "ROLE_USER", true);
+	User user8 = new User("andreea", "test", "Andreea Davidescu", 1991234, "Carmen 130", "ROLE_USER", true);
+	User user9 = new User("stefan", "test", "Stefan Fodor", 12955552, "Dunarii 210", "ROLE_USER", true);
+	User user10 = new User("iulia", "test", "Iulia Lazar", 19955552, "Calarasi 40", "ROLE_USER", true);
 
 
 	@Before
@@ -65,13 +72,27 @@ public class TransactionDAOTests {
 		usersDAO.saveUser(user1);
 		usersDAO.saveUser(user2);
 		usersDAO.saveUser(user3);
+		usersDAO.saveUser(user4);
+		usersDAO.saveUser(user5);
+		usersDAO.saveUser(user6);
+		usersDAO.saveUser(user7);
+		usersDAO.saveUser(user8);
+		usersDAO.saveUser(user9);
+		usersDAO.saveUser(user10);
 
 		Account acc1 = new Account(100, user1);
 		Account acc2 = new Account(200, user1);
 		Account acc3 = new Account(300, user2);
 		Account acc4 = new Account(15, user2);
 		Account acc5 = new Account(20, user3);
-		Account acc6 = new Account(555, user3);
+		Account acc6 = new Account(645, user3);
+		Account acc7 = new Account(44, user4);
+		Account acc8 = new Account(234, user6);
+		Account acc9 = new Account(654, user6);
+		Account acc10 = new Account(77, user6);
+		Account acc11 = new Account(876, user7);
+		Account acc12 = new Account(236, user8);
+		Account acc13 = new Account(654, user10);
 
 		accountDAO.saveOrUpdateAccount(acc1);
 		accountDAO.saveOrUpdateAccount(acc2);
@@ -79,6 +100,13 @@ public class TransactionDAOTests {
 		accountDAO.saveOrUpdateAccount(acc4);
 		accountDAO.saveOrUpdateAccount(acc5);
 		accountDAO.saveOrUpdateAccount(acc6);
+		accountDAO.saveOrUpdateAccount(acc7);
+		accountDAO.saveOrUpdateAccount(acc8);
+		accountDAO.saveOrUpdateAccount(acc9);
+		accountDAO.saveOrUpdateAccount(acc10);
+		accountDAO.saveOrUpdateAccount(acc11);
+		accountDAO.saveOrUpdateAccount(acc12);
+		accountDAO.saveOrUpdateAccount(acc13);
 				
 		accountDAO.transferMoney(acc1, acc2, 543);
 		accountDAO.transferMoney(acc2, acc4, 7);
@@ -91,15 +119,21 @@ public class TransactionDAOTests {
 		accountDAO.transferMoney(acc5, acc6, 5);
 		accountDAO.transferMoney(acc2, acc5, 77);
 		accountDAO.transferMoney(acc4, acc1, 8);
-		accountDAO.transferMoney(acc3, acc2, 2);
+		accountDAO.transferMoney(acc3, acc2, 23);
+		accountDAO.transferMoney(acc13, acc2, 42);
+		accountDAO.transferMoney(acc13, acc10, 52);
+		accountDAO.transferMoney(acc12, acc10, 42);
+		accountDAO.transferMoney(acc7, acc9, 25);
+		accountDAO.transferMoney(acc7, acc4, 23);
+		accountDAO.transferMoney(acc8, acc1, 44);
+		accountDAO.transferMoney(acc4, acc2, 39);
+		accountDAO.transferMoney(acc9, acc11, 34);
+		accountDAO.transferMoney(acc9, acc12, 56);
 		
 		List<Transaction> u1Tran = transactionDAO.getAllTransactions(user1,0,0);
 		List<Transaction> u2Tran = transactionDAO.getAllTransactions(user2,0,0);
 		List<Transaction> u3Tran = transactionDAO.getAllTransactions(user3,0,0);
 		
-		assertEquals(u1Tran.size(), 9);
-		assertEquals(u2Tran.size(), 4);
-		assertEquals(u3Tran.size(), 6);
 
 	}
 
