@@ -39,7 +39,9 @@ public class TransactionDAOHibernate implements TransactionDAO {
 	        .add(Restrictions.eq("to.username",user.getUsername()))
 	    );
 		
-//		crit.add(Restrictions.between("date", startDate, endDate));
+		if(startDate != 0 && endDate != 0){
+			crit.add(Restrictions.between("date", startDate, endDate));			
+		}
 		
 
 		return  crit.list();
