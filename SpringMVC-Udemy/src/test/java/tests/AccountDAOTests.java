@@ -99,5 +99,49 @@ public class AccountDAOTests {
 		assertEquals("There should be no users",0,offerList.size());
 		
 	}
+	
+	@Test
+	public void testUpdateAccounts(){
+		usersDAO.saveUser(user1);
+		usersDAO.saveUser(user2);
+		
+		Account acc1 = new Account(100, user1);
+		Account acc2 = new Account(200, user2);
+		
+		accountDAO.saveOrUpdateAccount(acc1);
+		accountDAO.saveOrUpdateAccount(acc2);
+			
+		acc1.setMoneyAmount(500);
+		acc2.setMoneyAmount(1000);
+		
+		accountDAO.saveOrUpdateAccount(acc1);
+		accountDAO.saveOrUpdateAccount(acc2);
+		
+		
+		List<Account> accountList1 = accountDAO.getAllAccountsForUser(user1);
+		List<Account> accountList2 = accountDAO.getAllAccountsForUser(user2);
+
+		assertEquals(accountList1.get(0).getMoneyAmount(), 500);
+		assertEquals(accountList2.get(0).getMoneyAmount(), 1000);
+		
+	}
+	
+	@Test
+	public void testGetById(){
+		usersDAO.saveUser(user1);
+		usersDAO.saveUser(user2);
+		
+		Account acc1 = new Account(100, user1);
+		Account acc2 = new Account(100, user1);
+		Account acc3 = new Account(100, user2);
+		
+		accountDAO.saveOrUpdateAccount(acc1);
+		accountDAO.saveOrUpdateAccount(acc2);
+		accountDAO.saveOrUpdateAccount(acc3);
+		
+		List<Account> allAccountsForUser = accountDAO.getAllAccountsForUser(user1);
+		
+		assertEquals(allAccountsForUser.size(), 2);
+	}
 
 }

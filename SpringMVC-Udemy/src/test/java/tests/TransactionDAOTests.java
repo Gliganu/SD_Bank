@@ -4,8 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
+import javax.sql.DataSource;import org.apache.velocity.tools.view.UiDependencyTool;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,8 +97,10 @@ public class TransactionDAOTests {
 		List<Transaction> u2Tran = transactionDAO.getAllTransactions(user2,0,0);
 		List<Transaction> u3Tran = transactionDAO.getAllTransactions(user3,0,0);
 		
-		
-		
+		assertEquals(u1Tran.size(), 9);
+		assertEquals(u2Tran.size(), 4);
+		assertEquals(u3Tran.size(), 6);
+
 	}
 
 
