@@ -130,6 +130,11 @@
 		<put-attribute name="content" value="/WEB-INF/tiles/allTransactions.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="viewBills" extends="offers.base">
+		<put-attribute name="title" value="User Bills"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/viewBills.jsp"></put-attribute>
+	</definition>
+	
 	
 
 

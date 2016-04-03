@@ -31,6 +31,8 @@
 		<security:intercept-url pattern="/editAccount" access="isAuthenticated()"/>
 		<security:intercept-url pattern="/deleteAccount" access="isAuthenticated()"/>
 		<security:intercept-url pattern="/createNewAccount" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/viewBills" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/payBill" access="isAuthenticated()"/>
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll"/>
 		<security:intercept-url pattern="/logOut" access="permitAll"/>

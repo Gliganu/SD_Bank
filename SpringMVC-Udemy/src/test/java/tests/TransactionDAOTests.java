@@ -3,6 +3,7 @@
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.sql.DataSource;import org.apache.velocity.tools.view.UiDependencyTool;
 import org.junit.After;
@@ -18,9 +19,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import daoLayer.AccountDAO;
 import daoLayer.TransactionDAO;
 import daoLayer.UsersDAO;
+import daoLayer.UtilityBillDAO;
 import domainLayer.Account;
 import domainLayer.Transaction;
 import domainLayer.User;
+import domainLayer.UtilityBill;
 import serviceLayer.AccountsService;
 import serviceLayer.UsersService;
 
@@ -42,6 +45,8 @@ public class TransactionDAOTests {
 	@Autowired
 	private UsersService usersService;
 	
+	@Autowired
+	private UtilityBillDAO utilityBillDAO;
 	
 	@Autowired
 	private DataSource dataSource;
@@ -62,13 +67,14 @@ public class TransactionDAOTests {
 	public void init() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+		jdbcTemplate.execute("DELETE FROM bills");
 		jdbcTemplate.execute("DELETE FROM transactions");
 		jdbcTemplate.execute("DELETE FROM accounts");
 		jdbcTemplate.execute("DELETE FROM users");
 	}
 
 	@Test
-	public void testCreateRetrieve() {
+	public void testCreateData() {
 		usersDAO.saveUser(user1);
 		usersDAO.saveUser(user2);
 		usersDAO.saveUser(user3);
@@ -130,10 +136,17 @@ public class TransactionDAOTests {
 		accountDAO.transferMoney(acc9, acc11, 34);
 		accountDAO.transferMoney(acc9, acc12, 56);
 		
-		List<Transaction> u1Tran = transactionDAO.getAllTransactions(user1,0,0);
-		List<Transaction> u2Tran = transactionDAO.getAllTransactions(user2,0,0);
-		List<Transaction> u3Tran = transactionDAO.getAllTransactions(user3,0,0);
+		List<User> allUsers = usersDAO.getAllUsers();
 		
+		Random random = new Random();
+		
+		for(User user: allUsers){
+			
+			for(int i = 0 ; i<10;i++){
+				UtilityBill utilityBill = new UtilityBill(user,random.nextInt(50));
+				utilityBillDAO.createUtilityBill(utilityBill);
+			}
+		}
 
 	}
 

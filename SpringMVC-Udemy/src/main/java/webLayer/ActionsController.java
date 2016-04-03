@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import daoLayer.UtilityBillDAO;
 import domainLayer.Account;
 import domainLayer.MoneyTransfer;
 import domainLayer.Transaction;
 import domainLayer.User;
+import domainLayer.UtilityBill;
 import serviceLayer.AccountsService;
 import serviceLayer.TransactionService;
 import serviceLayer.UsersService;
+import serviceLayer.UtilityBillService;
 
 @Controller
 public class ActionsController {
@@ -31,6 +34,7 @@ public class ActionsController {
 	private static String VIEW_ALL_CUSTOMERS_PAGE = "viewAllCustomers";
 	private static String EDIT_ACCOUNT_PAGE = "editAccount";
 	private static String ALL_TRANSACTIONS_PAGE = "allTransactions";
+	private static String VIEW_BILLS_PAGE = "viewBills";
 
 	@Autowired
 	UsersService usersService;
@@ -40,6 +44,9 @@ public class ActionsController {
 
 	@Autowired
 	TransactionService transactionService;
+	
+	@Autowired
+	private UtilityBillService utilityBillService;
 
 	@RequestMapping(value = "/updateClientInfo", method = RequestMethod.GET)
 	public String showUpdateClientInfoPage(@RequestParam(value = "username", required = false) String username,
@@ -199,6 +206,25 @@ public class ActionsController {
 		model.addAttribute("userAccounts", userAccounts);
 
 		return UPDATE_ACCOUNTS_INFO_PAGE;
+	}
+	
+	@RequestMapping(value = "/viewBills", method = RequestMethod.GET)
+	public String showBillsPage(Model model, Principal principal) {
+
+		
+		List<UtilityBill> userBills  = utilityBillService.getAllUtilityBillsForUser(principal.getName());
+
+		model.addAttribute("userBills", userBills);
+
+		return VIEW_BILLS_PAGE;
+	}
+
+	@RequestMapping(value = "/payBill", method = RequestMethod.GET)
+	public String payBill(@RequestParam("id") long idNumber, Model model, Principal principal) {
+
+		String response = utilityBillService.payBill(idNumber,principal.getName());
+
+		return Utils.showMessagePage(model, response);
 	}
 
 }

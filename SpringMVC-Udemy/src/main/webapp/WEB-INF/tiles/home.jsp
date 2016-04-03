@@ -27,6 +27,10 @@
 	<a href=<c:url value="/updateAccountsInfo "/>>Update Account Information</a>
 </p>
 
+<p>
+	<a href=<c:url value="/viewBills "/>>Show Utility Bills</a>
+</p>
+
 
 <p>
 	<a href=<c:url value="/transferMoney "/>>Transfer Money</a>

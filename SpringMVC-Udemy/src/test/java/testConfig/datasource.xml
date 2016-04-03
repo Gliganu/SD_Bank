@@ -47,10 +47,12 @@
 		<bean id="usersDAO" class="daoLayer.UsersDAOHibernate"></bean>
 		<bean id="accountDAO" class="daoLayer.AccountDAOHibernate"></bean>
 		<bean id="transactionDAO" class="daoLayer.TransactionDAOHibernate"></bean>
+		<bean id="utiliyBillDAO" class="daoLayer.UtilityBillDAOHibernate"></bean>
 		
 		<bean id="usersService" class="serviceLayer.UsersService"></bean>
 		<bean id="transactionService" class="serviceLayer.TransactionService"></bean>
 		<bean id="accountsService" class="serviceLayer.AccountsService"></bean>
+		<bean id="utilityBillsService" class="serviceLayer.UtilityBillService"></bean>
 		
 
 		<tx:annotation-driven />

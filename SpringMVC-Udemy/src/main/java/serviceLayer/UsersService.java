@@ -21,6 +21,9 @@ public class UsersService {
 	@Autowired
 	private AccountsService accountsService;
 	
+	@Autowired
+	private UtilityBillService utilityBillService;
+	
 	public void saveUser(User user){
 		usersDao.saveUser(user);
 	}
@@ -32,6 +35,7 @@ public class UsersService {
 	public void deleteUser(String username){
 		User user = getUser(username);
 		
+		utilityBillService.deleteBillsBeloningTo(username);
 		transactionService.deleteTransactionsInvolving(user);
 		accountsService.deleteAccountsBelongingTo(user);
 		usersDao.deleteUser(user);

@@ -44,6 +44,7 @@ public class UsersDAOTests {
 	public void init() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+		jdbcTemplate.execute("DELETE FROM bills");
 		jdbcTemplate.execute("DELETE FROM transactions");
 		jdbcTemplate.execute("DELETE FROM accounts");
 		jdbcTemplate.execute("DELETE FROM users");
