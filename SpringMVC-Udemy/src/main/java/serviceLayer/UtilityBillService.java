@@ -52,9 +52,12 @@ public class UtilityBillService {
 			if(account.getMoneyAmount() > ammountToPay){
 				account.setMoneyAmount(account.getMoneyAmount() - ammountToPay);
 				accountsService.saveOrUpdateAccount(account);
+				utilityBillDAO.deleteUtilityBill(utilityBill);
 				return "Transaction successful";
 			}
 		}
+		
+
 		
 		return "You don't have enough money in any of your accounts";
 		
